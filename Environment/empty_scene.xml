@@ -1,0 +1,295 @@
+<mujoco model="stretch scene">
+<size memory="50M"/>
+  
+  <!--
+
+  <include file="objects_assets/dish_drainer.xml"/>  
+  <include file="objects_assets/medicine.xml"/>  
+c
+  <include file="objects_assets/bus.xml"/>  
+  <include file="objects_assets/cereal_bowl.xml"/>  
+
+-->
+
+  <include file="stretch.xml"/>
+  <statistic center="0 0 .75" extent="1.2" meansize="0.05"/>
+  <option iterations="1000" gravity="0 0 -9.81"/>
+
+  <visual>
+    <rgba haze="0.15 0.25 0.35 1"/>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+
+    <global azimuth="-120" elevation="-20" />
+  </visual>
+
+  <asset>
+    <texture name="floor_texture" type="2d" height="1" width="1" file="wood.png"/>
+    <material name="MatFloor" reflectance="0.0" texture="floor_texture" texrepeat="6 6" texuniform="true"/>
+
+    <texture name="wall_texture" type="2d" height="1" width="1" file="wall_texture.png"/>
+    <material name="MatWall" reflectance="0.05" texture="wall_texture" texrepeat="6 6" texuniform="true"/>
+  </asset>
+
+  <worldbody>
+        <light directional='true' diffuse='.3 .3 .3' specular='0.3 0.3 0.3' pos='1 -1 1' dir='-1 1 -1'/>
+        <light directional='true' diffuse='.3 .3 .3' specular='0.3 0.3 0.3' pos='0 1 1' dir='0 -1 -1'/>
+    
+    <geom name="floor" type="plane" size="2.5 2.5 0.05" quat="0 0 0 1" material="MatFloor"/>
+
+    <geom name="pick_target" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.0"/>
+
+    <geom name="base_target" type="cylinder" size="0.1 0.001 0.1" pos="0 0 0.001" rgba="0 1 0 0.0" contype="0" conaffinity="0"/>
+    <geom name="base_center" type="cylinder" size="0.1 0.001 0.1" pos="0 0 0.001" rgba="1 0 0 0.0" contype="0" conaffinity="0"/>
+
+
+        <body name="body_extent" pos="100 100 100">
+            <geom name="body_extent" type="box" size="0.39 0.31 0.15" rgba="0 1 0 0.2" contype="0" conaffinity="0"/>
+        </body>
+
+
+<!-- <geom name="pick_target_0" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_1" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_2" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_3" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_4" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_5" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_6" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_7" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_8" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_9" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_10" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_11" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_12" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_13" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_14" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_15" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_16" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_17" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_18" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_19" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_20" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_21" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_22" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_23" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_24" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_25" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_26" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_27" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_28" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_29" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_30" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_31" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_32" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_33" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_34" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_35" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_36" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_37" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_38" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_39" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_40" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_41" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_42" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_43" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_44" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_45" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_46" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_47" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_48" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_49" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_50" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_51" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_52" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_53" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_54" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_55" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_56" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_57" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_58" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_59" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_60" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_61" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_62" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_63" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_64" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_65" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_66" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_67" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_68" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_69" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_70" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_71" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_72" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_73" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_74" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_75" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_76" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_77" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_78" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_79" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/>
+<geom name="pick_target_80" type="sphere" size="0.03" pos="100 100 0.001" rgba="0 1 0 0.5"/> -->
+
+    
+    
+    <body name="solid_sphere" pos="19 91 91">
+      <geom name="solid_center" type="sphere" size="0.025" pos="0 0 0" rgba="1 0 0 1"/>
+    </body>
+
+    <body name="grasping_head_0" pos="19 91 91">
+      <geom name="center_0" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_0" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_0" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_0" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_1" pos="19 91 91">
+      <geom name="center_1" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_1" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_1" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_1" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_2" pos="19 91 91">
+      <geom name="center_2" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_2" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_2" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_2" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_3" pos="19 91 91">
+      <geom name="center_3" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_3" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_3" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_3" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_4" pos="19 91 91">
+      <geom name="center_4" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_4" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_4" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_4" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_5" pos="19 91 91">
+      <geom name="center_5" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_5" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_5" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_5" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_6" pos="19 91 91">
+      <geom name="center_6" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_6" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_6" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_6" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_7" pos="19 91 91">
+      <geom name="center_7" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_7" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_7" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_7" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_8" pos="19 91 91">
+      <geom name="center_8" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_8" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_8" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_8" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_9" pos="19 91 91">
+      <geom name="center_9" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_9" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_9" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_9" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_10" pos="19 91 91">
+      <geom name="center_10" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_10" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_10" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_10" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_11" pos="19 91 91">
+      <geom name="center_11" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_11" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_11" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_11" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_12" pos="19 91 91">
+      <geom name="center_12" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_12" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_12" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_12" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_13" pos="19 91 91">
+      <geom name="center_13" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_13" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_13" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_13" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+    <body name="grasping_head_14" pos="19 91 91">
+      <geom name="center_14" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left_14" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right_14" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar_14" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="0 0 1 1" contype="0" conaffinity="0"/>
+    </body>
+        
+    
+        
+    <body name="grasping_head" pos="1 1 1">
+      <geom name="ceter" type="cylinder" size="0.003 0.015" pos="0.0 0.0 -0.028" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_left" type="cylinder" size="0.003 0.02" pos="0.032 0 0.006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="cylinder_right" type="cylinder" size="0.003 0.02" pos="-0.032 0 0.006" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+      <geom name="connecting_bar" type="box" size="0.03 0.002 0.002" pos="0 0 -0.012" rgba="1 0 0 1" contype="0" conaffinity="0"/>
+    </body>
+        
+
+
+<body name="eef_target" pos="1 1 1" quat="1 0 0 0">
+  <!-- Left finger of the gripper -->
+  <body name="left_finger" pos="0 0.0 0.015">
+    <geom name="left_eef_link" type="box" size="0.003 0.02 0.003" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" />
+  </body>
+  
+  <!-- Right finger of the gripper -->
+  <body name="right_finger" pos="0 0.0 -0.015">
+    <geom name="right_eef_link" type="box" size="0.003 0.02 0.003" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" contype="0" conaffinity="0"/>
+  </body>
+  
+  <!-- Connecting block of the gripper -->
+  <body name="connector" pos="0 0.02 0">
+    <geom name="connector_geom" type="box" size="0.003 0.003 0.02" pos="0 0 0" quat="1 0 0 0" rgba="0 0 1 0.5" contype="0" conaffinity="0"/>
+  </body>
+
+</body>
+
+    <geom name="eef_center" type="sphere" size="0.035" pos="100 100 0.001" rgba="1 0 0 0.5"/>
+
+      <!-- <geom name="wall1" type="box" pos="0 -2.5 4.0" size="2.5 0.01 4" material="MatWall"/>
+      <geom name="wall2" type="box" pos="0 2.5 4.0" size="2.5 0.01 4" material="MatWall"/>
+      <geom name="wall3" type="box" pos="2.5 0 4.0" size="0.01 2.5 4" material="MatWall"/>
+      <geom name="wall4" type="box" pos="-2.5 0 4.0" size="0.01 2.5 4" material="MatWall"/> -->
+
+ 
+  </worldbody>
+</mujoco>

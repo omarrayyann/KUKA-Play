@@ -1,0 +1,28 @@
+import argparse
+
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Run UntidyBotSimulator with optional flags.')
+    parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+    parser.add_argument('--use_processed_pcd', action='store_true', help='If True, use the processed PCD file')
+    parser.add_argument('--instruction', type=str, help='Instruction to execute')
+    parser.add_argument('--scene_xml_path', type=str, default="Environment/scene.xml", help='Mujoco XML scene path')
+    parser.add_argument('--pcd_path', type=str, default="Environment/concept_graph_results/pcd.pkl", help='PCD pickle file path')
+    parser.add_argument('--processed_pcd_path', type=str, default="Environment/concept_graph_results/processed_pcd.pkl", help='Processed PCD file path')
+    parser.add_argument('--objects_path', type=str, default="Environment/concept_graph_results/objects.json", help='Objects JSON file path')
+    parser.add_argument('--relations_path', type=str, default="Environment/concept_graph_results/relations.json", help='Relations JSON file path')
+    parser.add_argument('--grid_size', type=int, default=100, help='Grid size for path planning')
+    parser.add_argument('--gpt_model', type=str, default="gpt-4o", help='GPT model version')
+    parser.add_argument('--trajectory_length', type=float, default=0.2, help='Length of trajectory for pick tasks')
+    parser.add_argument('--trajectory_steps', type=int, default=5, help='Number of steps for the trajectory in pick tasks')
+    parser.add_argument('--trajectory_radius', type=float, default=0.03, help='Radius for obstacle checking in trajectory')
+    parser.add_argument('--trajectory_obstacles_check', type=bool, default=True, help='Enable obstacle checking in trajectory')
+    parser.add_argument('--trajectory_tolerance', type=float, default=0.05, help='Tolerance for obstacle collision')
+    parser.add_argument('--frequency', type=int, default=30, help='Simulation loop frequency')
+    parser.add_argument('--rerun', action='store_true', help='Enable rerun.io visualization')
+    parser.add_argument('--visualize_path', action='store_true', help='Visualize planned path')
+    parser.add_argument('--no_camera_visualization', action='store_true', help='Disable camera visualization')
+    parser.add_argument('--disable_any_grasp', action='store_true', help='Disable AnyGrasp Usage')
+    parser.add_argument('--grasp_server_host', type=str, default="localhost", help='Grasping Server IP')
+    parser.add_argument('--grasp_server_port', type=int, default=9875, help='Grasping Server Host')
+    return parser.parse_args()
+
